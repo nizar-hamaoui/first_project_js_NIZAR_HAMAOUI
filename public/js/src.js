@@ -20,7 +20,7 @@ class users {
 if (chose == "exit") {
     alert("Exiting the application.");
     while(true) {
-        chose = prompt("What do you want " + "signing_up" + " or " + "logging_in" + " or " + "changing_the_password" + "?");
+        chose = prompt("What do you want \n signing_up  or \n logging_in  or  \n changing_the_password" + "?");
         break;
     }
 }else if (chose == "signing_up") {
@@ -56,13 +56,44 @@ if (chose == "exit") {
     }
 
     
-if (users.email.includes(email)) {
+    if (users.email.includes(email)) {
     alert("This email is already in use. Please use a different email.");
-} else {
+    } else {
     alert("Email is unique and saved.");
     users.email.push(email); 
 
     
-}
+    }
+    var age1 = prompt("Enter your age :").trim();
+    if (isNaN(age1)) {
+        alert("Age baghi only have numbers.");
+        } else if (age1.length === 0 || age1.length >= 3) {
+        alert("Are you sure this is your real age? Please check again.");
+        age1 = prompt("Enter your age :").trim();
+        } else {
+        alert("Age is correct and saved.");
+    }
+    let password = prompt("Enter you password : ").trim();
+    if (/\s/.test(password)){
+        alert("3chiri fiha espace hayadha ")
+        password = prompt("Enter your password:").trim();
+       
+    }
+    else if (password.length < 7 ){
+        alert("passwor a3chiri khaso ykon ktar man 7 ola kay sawiha")
+    }
+     else if (!/[@#\-+*/]/.test(password)) {
+        alert("Password must include at least one special character from the set: \n [@, #, -, +, *, /].");
+    }
+    let confirmPassword = prompt("Re-enter your password:").trim();
+    if (confirmPassword !== password) {
+        alert("Passwords do not match. You are blocked.");
+    } else {
+        alert("Password confirmed and saved.");
+    }
+   
 
-let marck = new users(username, email)
+
+
+}
+// let marck = new users(username, email)
