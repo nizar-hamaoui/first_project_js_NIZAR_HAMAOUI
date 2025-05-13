@@ -114,7 +114,7 @@ if (chose == "exit") {
                             }
                             alert(`your money in bank is : ${marck.money}$ `)
                           let out =   confirm("do you wont logout ??")
-                          if (out !== false) {
+                          if (out !== true) {
                             let WithdrawMoney = confirm("Do you want to withdraw money?");
                             if (WithdrawMoney) {
                                 let amountToWithdraw = parseFloat(prompt("Enter the amount you want to withdraw:").trim());
@@ -242,4 +242,4 @@ if (chose == "exit") {
    
 
 
-}
+
