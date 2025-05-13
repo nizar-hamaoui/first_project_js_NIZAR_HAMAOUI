@@ -1,4 +1,4 @@
-var chose = prompt("What do you want \n signing_up \n exit" + "?");
+let chose = prompt("What do you want \n signing_up \n exit" + "?");
 
 let marck = {
     username: "",
@@ -113,7 +113,115 @@ if (chose == "exit") {
                                 }
                             }
                             alert(`your money in bank is : ${marck.money}$ `)
-                           confirm("do you wont logout ??")
+                          let out =   confirm("do you wont logout ??")
+                          if (out !== false) {
+                            let WithdrawMoney = confirm("Do you want to withdraw money?");
+                            if (WithdrawMoney) {
+                                let amountToWithdraw = parseFloat(prompt("Enter the amount you want to withdraw:").trim());
+                                if (isNaN(amountToWithdraw) || amountToWithdraw <= 0) {
+                                    alert("Invalid amount. Please enter a positive number.");
+                                } else if (amountToWithdraw > marck.money) {
+                                    alert("ma3andakch had mablagh ");
+                                } else {
+                                    marck.money -= amountToWithdraw;
+                                    alert(`Withdrawal successful! Your new balance is: ${marck.money}$`);
+                                }
+                            }
+                            let depositMoney = confirm("Do you want to deposit money?");
+                            if (depositMoney) {
+                                let amountToDeposit = parseFloat(prompt("Enter the amount you want to deposit:").trim());
+                                if (isNaN(amountToDeposit) || amountToDeposit <= 0) {
+                                    alert("Invalid amount. Please enter a positive number.");
+                                } else if (amountToDeposit > 1000) {
+                                    alert("You cannot deposit more than 1000.");
+                                } else {
+                                    marck.money += amountToDeposit;
+                                    alert(`Deposit successful! Your new balance is: ${marck.money}$`);
+                                }
+                            }
+                            // let getLoan = confirm("Do you want to get a loan?");
+                            // if (getLoan) {
+                            //     let loanAmount = marck.money * 0.2; 
+                            //     marck.money += loanAmount; 
+                            //     alert(`Loan approved! You received ${loanAmount}$. Your new balance is: ${marck.money}$.`);
+
+                            //     let loanDeduction = () => {
+                            //         if (loanAmount > 0) {
+                            //             let deduction = loanAmount * 0.1;
+                            //             loanAmount -= deduction; 
+                            //             marck.money -= deduction; 
+                            //             alert(`Loan deduction applied. Deducted: ${deduction}$. Remaining loan: ${loanAmount}$. Current balance: ${marck.money}$.`);
+                            //         }
+                            //     };
+
+                               
+                            //     let originalLoginFunction = window.onLogin; 
+                            //     window.onLogin = function () {
+                            //         if (originalLoginFunction) originalLoginFunction(); 
+                            //         loanDeduction(); 
+                            //     };
+
+                                let investMoney = confirm("Do you want to invest money?");
+                                if (investMoney) {
+                                    let invesAmount = parseFloat(prompt("Enter the amount you want to invest:").trim());
+                                    if (isNaN(invesAmount) || invesAmount <= 0) {
+                                        alert("Invalid amount. Please enter a positive number.");
+                                    } else if (invesAmount > marck.money) {
+                                        alert("You do not have enough balance to invest this amount.");
+                                    } else {
+                                        marck.money -= invesAmount;
+                                        let profit = invesAmount * 0.2; 
+                                        let totalProfit = 0;
+                                        let maxProfit = invesAmount * 1.2; 
+
+                                        let applyProfit = () => {
+                                            if (totalProfit < maxProfit) {
+                                                let currentProfit = Math.min(profit, maxProfit - totalProfit);
+                                                totalProfit += currentProfit;
+                                                marck.money += currentProfit;
+                                                alert(`You earned ${currentProfit}$ from your investment. Total profit so far: ${totalProfit}$.`);
+                                            } else {
+                                                alert("You have reached the maximum profit of 120% on your investment.");
+                                            }
+                                        };
+
+                                        alert(`Investment successful! You will earn 20% profit on each login until you reach 120% of your investment.`);
+                                        
+                                        let originalLoginFunction = window.onLogin; 
+                                        window.onLogin = function () {
+                                            if (originalLoginFunction) originalLoginFunction(); 
+                                            applyProfit(); 
+                                        };
+                                    }
+                                }
+                                if (confirm("Do you want to view your transaction history?")) {
+                                    if (!marck.transactionHistory || marck.transactionHistory.length === 0) {
+                                        alert("No transactions found.");
+                                    } else {
+                                        alert(`Transaction History:\n${marck.transactionHistory.join("\n")}`);
+                                    }
+                                }
+
+                                marck.transactionHistory = marck.transactionHistory || [];
+
+                                if (WithdrawMoney && amountToWithdraw > 0 && amountToWithdraw <= marck.money) {
+                                    marck.transactionHistory.push(`Withdrew ${amountToWithdraw}$`);
+                                }
+
+                                if (depositMoney && amountToDeposit > 0 && amountToDeposit <= 1000) {
+                                    marck.transactionHistory.push(`Deposited ${amountToDeposit}$`);
+                                }
+
+                                if (investMoney && invesAmount > 0 && invesAmount <= marck.money) {
+                                    marck.transactionHistory.push(`Invested ${invesAmount}$`);
+                                }
+                            }
+                            
+                            
+                          }else{
+                            alert("logout successfully")
+                            chose = prompt("What do you want \n signing_up \n exit" + "?");
+                          }
                             
                           }else{
                             alert("password ghalat !!")
