@@ -5,16 +5,15 @@ let marck = {
     email: "",
     age: 0,
     money: 1000,
-    password: ""
+    password: "",
+    transactionHistory: [] 
 };
 
 
 
 if (chose == "exit") {
     alert("Exiting the application.");
-if (chose == "exit") {
-        chose = prompt("What do you want \n signing_up " + "?");
-    }
+
 } else if (chose === "signing_up") {
     alert("You chose to sign up.");
     var username = prompt("Enter your username:").trim();
@@ -117,7 +116,7 @@ if (chose == "exit") {
                           if (out !== true) {
                             let WithdrawMoney = confirm("Do you want to withdraw money?");
                             if (WithdrawMoney) {
-                                let amountToWithdraw = parseFloat(prompt("Enter the amount you want to withdraw:").trim());
+                                var amountToWithdraw = parseFloat(prompt("Enter the amount you want to withdraw:").trim());
                                 if (isNaN(amountToWithdraw) || amountToWithdraw <= 0) {
                                     alert("Invalid amount. Please enter a positive number.");
                                 } else if (amountToWithdraw > marck.money) {
@@ -129,7 +128,7 @@ if (chose == "exit") {
                             }
                             let depositMoney = confirm("Do you want to deposit money?");
                             if (depositMoney) {
-                                let amountToDeposit = parseFloat(prompt("Enter the amount you want to deposit:").trim());
+                                var amountToDeposit = parseFloat(prompt("Enter the amount you want to deposit:").trim());
                                 if (isNaN(amountToDeposit) || amountToDeposit <= 0) {
                                     alert("Invalid amount. Please enter a positive number.");
                                 } else if (amountToDeposit > 1000) {
@@ -163,7 +162,7 @@ if (chose == "exit") {
 
                                 let investMoney = confirm("Do you want to invest money?");
                                 if (investMoney) {
-                                    let invesAmount = parseFloat(prompt("Enter the amount you want to invest:").trim());
+                                    var invesAmount = parseFloat(prompt("Enter the amount you want to invest:").trim());
                                     if (isNaN(invesAmount) || invesAmount <= 0) {
                                         alert("Invalid amount. Please enter a positive number.");
                                     } else if (invesAmount > marck.money) {
